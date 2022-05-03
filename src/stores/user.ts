@@ -3,9 +3,9 @@ import { User as UserType } from "@/types/types";
 import { LoginUser, RegisterUser } from "@/types/api";
 import api from "@/services/api";
 
-export const useUserStore = defineStore('user',{
+export const useUserStore = defineStore("user", {
   state: () => ({
-    loggedUser: {} as UserType
+    loggedUser: {} as UserType,
   }),
   getters: {
     user: (state) => {
@@ -15,10 +15,10 @@ export const useUserStore = defineStore('user',{
   },
   actions: {
     registerUser(user: RegisterUser) {
-      api.registerUser(user).then((user) => (this.loggedUser = user))
+      api.registerUser(user).then((user) => (this.loggedUser = user));
     },
     loginUser(user: LoginUser) {
-      api.loginUser(user).then((user) => (this.loggedUser = user))
-    }
-  }
-})
+      api.loginUser(user).then((user) => (this.loggedUser = user));
+    },
+  },
+});
