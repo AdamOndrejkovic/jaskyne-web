@@ -1,17 +1,18 @@
 <template>
-  <div :class="[width, height]">
-    <div class="inner-box">
-      <iframe
-        :src="url"
-        frameborder="0"
-        type="text/html"
-        allowscriptaccess="always"
-        allowfullscreen="true"
-        scrolling="yes"
-        allownetworking="all"
-      ></iframe>
-    </div>
-  </div>
+<div style="width: 100%;">
+  <div class="inner-box">
+    <iframe 
+    height="350"
+    :src="url" 
+    type="text/html" 
+    frameborder="0"
+    allowscriptaccess="always" 
+    allowfullscreen="true" 
+    scrolling="yes" 
+    allownetworking="all">
+    </iframe> 
+  </div> 
+</div>
 </template>
 
 <script lang="ts">
@@ -29,7 +30,7 @@ export default defineComponent({
     },
     height: {
       type: String,
-      default: "w-20",
+      default: "h-20",
     },
   },
   setup() {
@@ -44,10 +45,11 @@ export default defineComponent({
 
 <style scoped>
 .inner-box {
-  @apply relative;
+  @apply relative pt-0 h-96;
+  height: 60vh;
 }
 
 iframe {
-  @apply w-full;
+  @apply w-full h-full absolute top-0 left-0;
 }
 </style>
