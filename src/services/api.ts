@@ -20,9 +20,9 @@ client.interceptors.response.use(
 
 export default {
   registerUser: async (user: RegisterUser): Promise<User> => {
-    return await client.post("/users/register", user)
+    return await client.post("/users/register", user);
   },
   loginUser: async (user: LoginUser): Promise<User> => {
-    return await client.post("/users/login", user)
+    return await client.post("/users/login", user);
   },
 };

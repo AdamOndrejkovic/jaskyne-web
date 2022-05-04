@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex ">
     <div><img src="" alt="Logo" /></div>
     <div><h1>Menej známe slovenské jaskyne</h1></div>
     <div>

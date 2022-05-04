@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-box">
+  <div :class="[width, height]">
     <div class="inner-box">
       <iframe
         :src="url"
@@ -23,6 +23,14 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    width: {
+      type: String,
+      default: "w-20",
+    },
+    height: {
+      type: String,
+      default: "w-20",
+    },
   },
   setup() {
     const name = "test";
@@ -35,9 +43,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.outer-box {
-  width: 100%;
+.inner-box {
+  @apply relative;
 }
 
-
+iframe {
+  @apply w-full;
+}
 </style>
