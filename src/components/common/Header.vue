@@ -1,9 +1,11 @@
 <template>
   <div class="flex gap-3 justify-between items-center h-14 overflow-hidden">
     <div>
-      <img src="../../assets/images/logo.jpg" alt="Logo"  /></div>
+      <img src="../../../public/images/logo.jpg" alt="Logo" />
+    </div>
     <div>
-      <h1 class="text-3xl">Menej známe slovenské jaskyne</h1></div>
+      <h1 class="text-3xl">Menej známe slovenské jaskyne</h1>
+    </div>
     <div>
       <div @click="openNav"><span class="navigation-button">Menu</span></div>
       <div :class="[width]" class="navigation-box" @click="closeNav">
@@ -24,15 +26,15 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const width = ref<string>("w-0")
+    const width = ref<string>("w-0");
 
     const openNav = () => {
-      width.value = "w-screen"
-    }
+      width.value = "w-screen";
+    };
 
     const closeNav = () => {
-      width.value = "w-0"
-    }
+      width.value = "w-0";
+    };
 
     return {
       width,
@@ -54,7 +56,7 @@ h1 {
   z-index: 1;
   top: 0;
   left: 0;
-  background-image: url("../../assets/images/cave.jpg");
+  background-image: url("../../../public/images/cave.jpg");
   background-position: center;
   overflow-x: hidden;
   transition: 0.5s;
@@ -87,7 +89,7 @@ h1 {
 }
 
 .navigation-box > div > a:first-of-type:hover {
-  animation: spin 1s linear forwards;  
+  animation: spin 1s linear forwards;
 }
 
 .navigation-button {
@@ -95,11 +97,20 @@ h1 {
 }
 
 @keyframes spin {
-  0% {transform: rotate(0deg);}
-  25% {transform: rotate(90deg);}
-  50% {transform: rotate(180deg);}
-  75% {transform: rotate(270deg);}
-  100% {transform: rotate(360deg);}
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-
 </style>
