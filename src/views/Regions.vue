@@ -1,29 +1,43 @@
 <template>
   <div>
     <div class="region-wrapper">
-      <div v-for="region in regions" :key="region.key" class="region-card" @click="redirect(region.parameter)">
-        <div class="w-64 h-44 lg:w-96 lg:h-80 overflow-hidden flex items-center">
-        <img
-        :src="`/images/regions/${region.image}`"
-        :alt="region.title"
-        class="h-full w-4/5 mx-auto rounded"
-      />
+      <div
+        v-for="region in regions"
+        :key="region.key"
+        class="region-card"
+        @click="redirect(region.parameter)"
+      >
+        <div
+          class="w-64 h-44 lg:w-96 lg:h-80 overflow-hidden flex items-center"
+        >
+          <img
+            :src="`/images/regions/${region.image}`"
+            :alt="region.title"
+            class="h-full w-4/5 mx-auto rounded"
+          />
+        </div>
+        <h2 class="bg-white w-52 text-center -mt-6">{{ region.title }}</h2>
       </div>
-      <h2 class="bg-white w-52 text-center -mt-6">{{ region.title }}</h2>
-    </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { useCavesActions } from "@/store/caves";
 import { defineComponent } from "vue";
 import { useRoute, useRouter } from "vue-router";
 export default defineComponent({
   setup() {
-    const route = useRoute
-    const router = useRouter()
+    const route = useRoute;
+    const router = useRouter();
+    const { setRegion } = useCavesActions()
 
-    const regions: { key: number; title: string; parameter: string, image: string }[] = [
+    const regions: {
+      key: number;
+      title: string;
+      parameter: string;
+      image: string;
+    }[] = [
       {
         key: 1,
         title: "Bratislavský kraj",
@@ -75,8 +89,9 @@ export default defineComponent({
     ];
 
     const redirect = (parameter: string) => {
-      router.push(`/jaskyne/${parameter}`)
-    }
+      setRegion(parameter)
+      router.push(`/jaskyne/${parameter}`);
+    };
 
     return {
       regions,
@@ -87,7 +102,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.region-wrapper{ 
+.region-wrapper {
   @apply grid grid-flow-row  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-4 xl:grid-cols-4 gap-4 overflow-hidden;
 }
 
@@ -101,7 +116,7 @@ export default defineComponent({
 
 @keyframes zoom-in {
   0% {
-    transform: scale(1,1);
+    transform: scale(1, 1);
   }
   100% {
     transform: scale(1.25, 1.25);

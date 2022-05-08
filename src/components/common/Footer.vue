@@ -2,7 +2,7 @@
   <footer class="flex flex-col bg-brand-500 py-10 items-center justify-center">
     <div class="flex gap-4 text-lg text-white">
       <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
+      <router-link to="/jaskyne">Jaskyne</router-link>
       <router-link to="/blog">Blog</router-link>
       <router-link to="/contact">Contact</router-link>
     </div>
