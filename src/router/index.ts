@@ -28,7 +28,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: "/contact",
-    name: Routes.Caves,
+    name: Routes.Contact,
     component: Caves,
   },
 ];

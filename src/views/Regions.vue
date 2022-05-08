@@ -5,7 +5,7 @@
         v-for="region in regions"
         :key="region.key"
         class="region-card"
-        @click="redirect(region.parameter)"
+        @click="redirect(region.parameter, region.title)"
       >
         <div
           class="w-64 h-44 lg:w-96 lg:h-80 overflow-hidden flex items-center"
@@ -30,7 +30,8 @@ export default defineComponent({
   setup() {
     const route = useRoute;
     const router = useRouter();
-    const { setRegion } = useCavesActions()
+    const { setRegion, getAllCaves } = useCavesActions()
+    getAllCaves()
 
     const regions: {
       key: number;
@@ -88,8 +89,8 @@ export default defineComponent({
       },
     ];
 
-    const redirect = (parameter: string) => {
-      setRegion(parameter)
+    const redirect = (parameter: string, region : string) => {
+      setRegion(region.split(' ')[0])
       router.push(`/jaskyne/${parameter}`);
     };
 

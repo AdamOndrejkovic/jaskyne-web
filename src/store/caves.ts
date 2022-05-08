@@ -1,6 +1,6 @@
 import api from "@/services/api"
 import { defineStore, storeToRefs } from "pinia"
-import { CavesState } from "@/types/types"
+import { Cave, CavesState } from "@/types/types"
 
 
 type CavesGetters = {
@@ -10,6 +10,7 @@ type CavesGetters = {
 type CavesActions = {
     getAllCaves: () => Promise<void>,
     setRegion: (region: string) => void,
+    getFilteredCaves: () => Cave[]
     clearRegion: () => void,
 }
 
@@ -26,7 +27,7 @@ const useCavesStore = defineStore<string, CavesState, CavesGetters, CavesActions
         },
         getAllCavesByRegion(state) {
             if(this.caves.length > 0) {
-                return this.caves.filter(cave => cave.location === this.region)
+                return this.caves.filter(cave => cave.region === this.region)
             }   
             
             return null
@@ -36,6 +37,9 @@ const useCavesStore = defineStore<string, CavesState, CavesGetters, CavesActions
         async getAllCaves() {
             this.caves = await api.getAllCaves()
         },
+        getFilteredCaves(): Cave[] {
+            return this.caves.filter(cave => cave.region === this.region)
+        },
         setRegion(region: string) {
             this.region = region
         },
@@ -44,6 +48,7 @@ const useCavesStore = defineStore<string, CavesState, CavesGetters, CavesActions
         }
     }
 })
+
 
 export const useCavesState = () => storeToRefs(useCavesStore())
 
