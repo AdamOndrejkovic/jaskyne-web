@@ -4,6 +4,7 @@ import Home from "@/views/Home.vue";
 import Regions from "@/views/Regions.vue";
 import Caves from "@/views/Caves.vue";
 import Blog from "@/views/Blog.vue";
+import Contact from "@/views/Contact.vue"
 
 const routes: RouteRecordRaw[] = [
   {
@@ -29,7 +30,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/contact",
     name: Routes.Contact,
-    component: Caves,
+    component: Contact,
   },
 ];
 

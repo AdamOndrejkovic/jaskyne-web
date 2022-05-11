@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="caves-container">
     <button @click="isAdding">Pridat jaskynu</button>
     <h2>Jaskyne {{ region }} kraj</h2>
     <div>
@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-  <add-cave v-if="adding" />
+  <add-cave v-if="adding" @close="isAdding" />
 </template>
 <script lang="ts">
 import AddCave from "@/components/modals/AddCave.vue";
@@ -26,14 +26,14 @@ import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   components: { AddCave },
+  emits: ['close'],
   setup() {
     const adding = ref<boolean>(false);
     const { getFilteredCaves } = useCavesActions()
     const { region } = useCavesState()
+
     const caves = ref<Cave[]>([])
     caves.value = getFilteredCaves()
-
-    console.log(getFilteredCaves())
 
     const isAdding = () => {
       adding.value = !adding.value;
@@ -49,6 +49,10 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+.caves-container {
+  min-height: 75vh;
+}
+
 h2, h3 {
   font-family: "Permanent Marker", cursive;
 }

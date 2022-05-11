@@ -15,8 +15,8 @@ export interface Cave {
   id: string;
   title: string;
   description: string;
-  region: string;
-  location: RegionEnum;
+  region: RegionEnum;
+  location: string;
   difficulty: DifficultyEnum;
   duration: string;
   image: string;
