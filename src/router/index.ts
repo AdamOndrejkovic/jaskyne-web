@@ -5,6 +5,7 @@ import Regions from "@/views/Regions.vue";
 import Caves from "@/views/Caves.vue";
 import Blog from "@/views/Blog.vue";
 import Contact from "@/views/Contact.vue"
+import Auth from "@/views/Auth.vue"
 
 const routes: RouteRecordRaw[] = [
   {
@@ -32,6 +33,11 @@ const routes: RouteRecordRaw[] = [
     name: Routes.Contact,
     component: Contact,
   },
+  {
+    path: "/authenticate",
+    name: Routes.Authenticate,
+    component: Auth,
+  }
 ];
 
 const router = createRouter({

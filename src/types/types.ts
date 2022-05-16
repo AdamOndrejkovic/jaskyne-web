@@ -5,11 +5,10 @@ export type User = {
   name: string;
   email: string;
   password: string;
-  userList: Array<string>;
 }
 
 export type Cave = {
-  id: string
+  _id: string
   title: string;
   description: string;
   region: RegionEnum;
@@ -23,5 +22,6 @@ export type Cave = {
 export type CavesState = {
   caves: Cave[]
   region: string | null
+  editId: string | null
 }
 

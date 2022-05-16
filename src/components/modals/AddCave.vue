@@ -6,7 +6,7 @@
       </div>
     </template>
     <template #body>
-        <form @submit.prevent :validation-schema="schema">
+        <form @submit.prevent>
            <div class="form-group">
           <label for="title">Title</label>
           <Field type="text" name="title"/>
@@ -97,7 +97,18 @@ export default defineComponent({
     }
   },
   setup() {
+      const schema = yup.object({
+          title: yup.string().required(),
+          description: yup.string().required(),
+          region: yup.string().required(),
+          location: yup.string().required(),
+          difficulty: yup.string().required(),
+          duration: yup.string().required(),
+          image: yup.string().required(),
+      });
+
     const { values, handleSubmit, resetForm } = useForm<AddForm>({
+      validationSchema: schema,
       initialValues: {
         title: '',
         description: '',
@@ -109,20 +120,10 @@ export default defineComponent({
       }
     })
 
-    const schema = yup.object({
-      title: yup.string().required(),
-      description: yup.string().required(),
-      region: yup.string().required(),
-      location: yup.string().required(),
-      difficulty: yup.string().required(),
-      duration: yup.string().required(),
-      image: yup.string().required(),
-    });
-
     const onSubmit = handleSubmit(values => {
       if(values){
         const cave: Cave = {
-          id: '',
+          _id: '',
           title: values.title,
           description: values.description,
           region: values.region as RegionEnum,  

@@ -1,6 +1,7 @@
 import api from "@/services/api"
 import { defineStore, storeToRefs } from "pinia"
 import { Cave, CavesState } from "@/types/types"
+import { string } from "yup"
 
 
 type CavesGetters = {
@@ -12,13 +13,16 @@ type CavesActions = {
     setRegion: (region: string) => void,
     getFilteredCaves: () => Cave[]
     clearRegion: () => void,
+    setEditId: (id: string) => void,
+    clearEditId: () => void,
 }
 
 const useCavesStore = defineStore<string, CavesState, CavesGetters, CavesActions>("cavesStore", {
     state: () => {
         return {
             caves: [],
-            region: null
+            region: null,
+            editId: null
         }
     },
     getters: {
@@ -45,6 +49,12 @@ const useCavesStore = defineStore<string, CavesState, CavesGetters, CavesActions
         },
         clearRegion(){
             this.region = null
+        },
+        setEditId(id: string) {
+            this.editId = id
+        },
+        clearEditId() {
+            this.editId = null
         }
     }
 })

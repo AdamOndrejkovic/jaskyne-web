@@ -12,7 +12,7 @@ export interface LoginUser {
 }
 
 export interface Cave {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   region: RegionEnum;

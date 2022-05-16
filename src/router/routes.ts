@@ -3,5 +3,6 @@ export enum Routes {
   Caves = "Caves",
   Blog = "Blog",
   Contact = "Contact",
-  Regions = "Regions"
+  Regions = "Regions",
+  Authenticate = "Authenticate"
 }

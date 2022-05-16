@@ -15,6 +15,7 @@
           <router-link to="/jaskyne">Jaskyne</router-link>
           <router-link to="/blog">Blog</router-link>
           <router-link to="/contact">Contact</router-link>
+          <router-link to="/authenticate"><img src="../../../public/icons/user.png" alt="User" class="w-14 h-14 mx-auto"/></router-link>
         </div>
       </div>
     </div>

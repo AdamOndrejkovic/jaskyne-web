@@ -5,15 +5,15 @@
       width="w-screen"
       height="h-96 "
     />
-    <div class="flex gap-4 py-8">
-      <div class="w-1/2">
+    <div class="flex lg:flex-row flex-col gap-4 py-8">
+      <div class="lg:w-1/2">
         <img
           src="../../public/images/tatry.jpg"
           class="mx-auto rounded"
           alt="Tatry"
         />
       </div>
-      <div class="w-1/2 flex flex-col items-center justify-center">
+      <div class="lg:w-1/2 flex flex-col items-center justify-center">
         <h2 class="text-2xl">O nás</h2>
         <p class="w-4/5">
           Účelom tejto stránky je spropagovať menej známe slovenské jaskyne.

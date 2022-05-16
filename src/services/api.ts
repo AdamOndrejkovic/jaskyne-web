@@ -38,7 +38,7 @@ export default {
     return await client.get(`/caves/${id}`)
   },
   updateCave: async (cave: Cave): Promise<any> => {
-    return await client.patch(`/caves/${cave.id}`, cave)
+    return await client.patch(`/caves/${cave._id}`, cave)
   },
   deleteCave: async (id: string): Promise<any> => {
     return await client.delete(`/caves/${id}`)
