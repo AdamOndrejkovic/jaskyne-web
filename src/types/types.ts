@@ -1,10 +1,12 @@
 import { DifficultyEnum, RegionEnum } from "./models";
 
 export type User = {
-  id: string;
-  name: string;
+  uuid: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
+  role: string;
 }
 
 export type Cave = {
@@ -23,5 +25,12 @@ export type CavesState = {
   caves: Cave[]
   region: string | null
   editId: string | null
+}
+
+export type Chat = {
+  uuid: string;
+  firstName: string;
+  text: string;
+  room: string;
 }
 

@@ -9,8 +9,8 @@
           <blockquote> Miesto : {{ cave.location }}</blockquote>
           <blockquote> Náročnosť : {{ cave.difficulty }}</blockquote>
           <blockquote> Trvanie : {{ cave.duration }}</blockquote>
-          <img src="../../public/icons/edit.png" class="w-8 h-8" alt="Edit">
-          <img src="../../public/icons/delete.png" class="w-8 h-8" alt="Delete" @click="deleteCave(cave._id)">
+          <img v-if="can()" src="../../public/icons/edit.png" class="w-8 h-8" alt="Edit">
+          <img v-if="can()" src="../../public/icons/delete.png" class="w-8 h-8" alt="Delete" @click="deleteCave(cave._id)">
         </div>
       </div>
     </div>
@@ -18,6 +18,7 @@
 <script lang="ts">
 import router from '@/router'
 import api from '@/services/api'
+import { useUserActions, useUserGetters } from '@/store/user'
 import { Cave } from '@/types/types'
 import { defineComponent, PropType } from 'vue'
 
@@ -27,7 +28,7 @@ export default defineComponent({
       default: null,
     },
     setup() {
-
+        const { can } = useUserActions()
         const deleteCave = async (id: string) => {
             await api.deleteCave(id)
             router.push(`/jaskyne/`);        
@@ -40,6 +41,7 @@ export default defineComponent({
         return {
             deleteCave,
             editCave,
+            can,
         }
     },
 })

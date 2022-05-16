@@ -1,6 +1,6 @@
 <template>
   <div class="caves-container">
-    <button @click="isAdding">Pridat jaskynu</button>
+    <button v-if="can()" @click="isAdding" class="ml-5"><img src="../../public/icons/add.png" alt="Pridat jaskynu" class="w-10 h-10"/></button>
     <h2>Jaskyne {{ region }} kraj</h2>
     <cave :caves="caves" />
   </div>
@@ -12,6 +12,7 @@ import { useCavesActions, useCavesState } from "@/store/caves";
 import { Cave as caveType } from "@/types/types";
 import { defineComponent, ref } from "vue";
 import Cave from "@/components/Cave.vue";
+import { useUserActions } from "@/store/user";
 
 export default defineComponent({
   components: { AddCave, Cave },
@@ -20,6 +21,7 @@ export default defineComponent({
     const adding = ref<boolean>(false);
     const { getFilteredCaves } = useCavesActions()
     const { region } = useCavesState()
+    const { can } = useUserActions()
 
     const caves = ref<caveType[]>([])
     caves.value = getFilteredCaves()
@@ -33,6 +35,7 @@ export default defineComponent({
       isAdding,
       caves,
       region,
+      can,
     };
   },
 });

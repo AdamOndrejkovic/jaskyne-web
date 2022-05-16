@@ -1,17 +1,20 @@
 <template>
     <div class="register">
-    <form @submit.prevent>
-        <div class="form-group">
-          <label for="firstName">First name</label>
-          <Field type="text" name="firstName" />
-          <ErrorMessage class="error" name="firstName" />
-        </div>  
-        <div class="form-group">
-          <label for="lastName">Last name</label>
-          <Field type="text" name="lastName" />
-          <ErrorMessage class="error" name="lastName" />
-        </div>  
-        <div class="form-group">
+    <form @submit.prevent class="align-middle">
+        <div class="flex flex-row gap-2">
+                <div class="form-group">
+            <label for="firstName">First name</label>
+            <Field type="text" name="firstName" />
+            <ErrorMessage class="error" name="firstName" />
+            </div>  
+            <div class="form-group">
+            <label for="lastName">Last name</label>
+            <Field type="text" name="lastName" />
+            <ErrorMessage class="error" name="lastName" />
+            </div> 
+        </div> 
+        <div class="flex flex-row gap-2">
+            <div class="form-group">
           <label for="email">Email</label>
           <Field type="text" name="email" />
           <ErrorMessage class="error" name="email" />
@@ -20,8 +23,11 @@
           <label for="password">Password</label>
           <Field type="password" name="password" />
           <ErrorMessage class="error" name="password" />
-        </div>       
-        <button @click="register">Register</button>
+        </div>     
+        </div>  
+        <div class="flex justify-center">
+            <button @click="register">Register</button>
+        </div>
     </form>
     </div>
 </template>
@@ -92,6 +98,6 @@ export default defineComponent({
 }
 
 button {
-    @apply w-full border-r-2 border-l-2 border-solid text-white hover:text-brand-500 hover:border-brand-500 mt-2;
+    @apply w-1/2 border-r-2 border-l-2 border-solid text-white hover:text-brand-500 hover:border-brand-500 mt-2;
 }
 </style>

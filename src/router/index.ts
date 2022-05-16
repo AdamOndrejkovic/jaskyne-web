@@ -3,7 +3,7 @@ import { Routes } from "@/router/routes";
 import Home from "@/views/Home.vue";
 import Regions from "@/views/Regions.vue";
 import Caves from "@/views/Caves.vue";
-import Blog from "@/views/Blog.vue";
+import Chat from "@/views/Chat.vue";
 import Contact from "@/views/Contact.vue"
 import Auth from "@/views/Auth.vue"
 
@@ -24,9 +24,9 @@ const routes: RouteRecordRaw[] = [
     component: Caves,
   },
   {
-    path: "/blog",
-    name: Routes.Blog,
-    component: Blog,
+    path: "/chat",
+    name: Routes.Chat,
+    component: Chat,
   },
   {
     path: "/contact",

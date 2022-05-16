@@ -4,7 +4,7 @@ import { User } from "@/types/types";
 
 const useUserStore = defineStore("user", {
   state: () => ({
-    loggedUser: {} as User,
+    loggedUser: undefined as User | undefined,
   }),
   getters: {
     user: (state) => {
@@ -16,6 +16,16 @@ const useUserStore = defineStore("user", {
     setUser(user: User) {
       this.loggedUser = user
     },
+    logout() {
+      this.loggedUser = undefined
+    },
+    can(): boolean {
+      if (this.loggedUser && this.loggedUser.role === "admin") {
+        return true
+      }
+
+      return false
+    }
   },
 })
 

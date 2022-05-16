@@ -13,9 +13,10 @@
           <a>&times;</a>
           <router-link to="/">Home</router-link>
           <router-link to="/jaskyne">Jaskyne</router-link>
-          <router-link to="/blog">Blog</router-link>
+          <router-link to="/chat">Chat</router-link>
           <router-link to="/contact">Contact</router-link>
-          <router-link to="/authenticate"><img src="../../../public/icons/user.png" alt="User" class="w-14 h-14 mx-auto"/></router-link>
+          <router-link to="/authenticate" v-if="!loggedUser"><img src="../../../public/icons/user.png" alt="User" class="w-14 h-14 mx-auto"/></router-link>
+          <span v-if="loggedUser" @click="logoutUser" class="flex flex-col items-center justify-center"><p>{{ loggedUser.firstName }} {{ loggedUser.lastName }}</p><img src="../../../public/icons/logout.png" alt="Logout" class="w-14 h-14 mx-auto"></span>
         </div>
       </div>
     </div>
@@ -23,11 +24,14 @@
 </template>
 
 <script lang="ts">
+import { useUserActions, useUserGetters } from "@/store/user";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   setup() {
     const width = ref<string>("w-0");
+    const { loggedUser } = useUserGetters()
+    const { logout } = useUserActions()
 
     const openNav = () => {
       width.value = "w-screen";
@@ -37,10 +41,16 @@ export default defineComponent({
       width.value = "w-0";
     };
 
+    const logoutUser = () => {
+      logout()
+    }
+
     return {
       width,
       openNav,
       closeNav,
+      loggedUser,
+      logoutUser,
     };
   },
 });

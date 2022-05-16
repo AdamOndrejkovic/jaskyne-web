@@ -1,7 +1,7 @@
 export enum Routes {
   Home = "Home",
   Caves = "Caves",
-  Blog = "Blog",
+  Chat = "Chat",
   Contact = "Contact",
   Regions = "Regions",
   Authenticate = "Authenticate"
