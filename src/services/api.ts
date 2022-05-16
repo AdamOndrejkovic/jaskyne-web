@@ -22,10 +22,10 @@ client.interceptors.response.use(
 export default {
   // Auth api calls
   registerUser: async (user: RegisterUser): Promise<User> => {
-    return await client.post("/users/register", user);
+    return await client.post("/auth/register", user);
   },
   loginUser: async (user: LoginUser): Promise<User> => {
-    return await client.post("/users/login", user);
+    return await client.post("/auth/login", user);
   },
   // Caves api calls
   createCave: async (cave: Cave): Promise<any> => {

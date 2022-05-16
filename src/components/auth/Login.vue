@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <h2>Login</h2>
+    <div class="login">
     <form @submit.prevent>
         <div class="form-group">
           <label for="email">Email</label>
@@ -12,7 +11,7 @@
           <Field type="password" name="password" />
           <ErrorMessage class="error" name="password" />
         </div>        
-        <button @click="login">Login</button>
+        <button @click="login"><span>Login</span></button>
     </form>
     </div>
 </template>
@@ -22,11 +21,13 @@ import { LoginUser } from '@/types/api';
 import { defineComponent } from 'vue'
 import { useForm, Field, ErrorMessage, Form as VeeForm } from 'vee-validate';
 import * as yup from 'yup';
+import router from '@/router';
+import { useUserActions } from '@/store/user';
 
 export default defineComponent({
     components: {Field, ErrorMessage},
     setup() {
-
+        const { setUser } = useUserActions()
         const schema = yup.object({
           email: yup.string().required().email(),
           password: yup.string().required(),
@@ -40,8 +41,18 @@ export default defineComponent({
             }
         })
 
-        const login = handleSubmit(values => {
-            console.log(values)
+        const login = handleSubmit(async values => {
+            const loginUser: LoginUser = {
+                email: values.email,
+                password: values.password,                
+            }
+            const user = await api.loginUser(loginUser)
+            if(user != null){
+                setUser(user)
+                router.push(`/`); 
+            }else {
+                alert("Error occoured while logging in. Please try again")
+            }
         })
 
         return {
@@ -51,3 +62,19 @@ export default defineComponent({
     },
 })
 </script>
+<style scoped>
+.login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-group {
+    @apply flex flex-col py-4;
+}
+
+button {
+    @apply w-full border-r-2 border-l-2 border-solid text-white hover:text-brand-500 hover:border-brand-500 mt-2;
+}
+</style>

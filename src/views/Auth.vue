@@ -1,10 +1,11 @@
 <template>
-    <div class="py-2 flex">
-        <div class="flex flex-col justify-center items-center mx-auto lg:w-1/2">
-            <div>
-                <div class="flex gap-4">
-                    <span @click="changeVisibility('login')">Login</span>
-                    <span @click="changeVisibility('register')">Register</span>
+    <div class="py-2 flex flex-col-reverse lg:flex-row relative flex-wrap overflow-hidden">
+        <div class="overlay"></div>
+        <div class="flex justify-center items-center mx-auto lg:w-1/2 w-full">
+            <div class="auth-box">
+                <div class="flex gap-4 py-4 justify-center text-xl">
+                    <span :class="[visibility === 'login' ? 'underline text-white' : '']" @click="changeVisibility('login')">Login</span>
+                    <span :class="[visibility === 'register' ? 'underline text-white' : '']" @click="changeVisibility('register')">Register</span>
                 </div>
                 <div v-if="visibility === 'login'">
                     <Login/>
@@ -14,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="mr-4">
+        <div class="lg:mr-10 mt-1 mx-auto relative">
         <img src="/images/jaskyna.jpg" alt="">
       </div>
     </div>
@@ -45,5 +46,21 @@ img {
 
 h2 {
     font-family: "Permanent Marker", cursive;
+}
+
+.auth-box {
+    @apply bg-gray-300 relative rounded;
+    width: 75%;
+    height: 50%;    
+}
+
+.overlay {
+    background-image: url("../../public/images/forest.jpg");
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
 }
 </style>

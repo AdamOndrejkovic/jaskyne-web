@@ -132,9 +132,6 @@ export default defineComponent({
           duration: values.duration,
           image: values.image
         }
-
-        console.log(values)
-        
       }
       return
     })

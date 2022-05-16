@@ -1,11 +1,15 @@
 <template>
-    <div>
-        <h2>Register</h2>
+    <div class="register">
     <form @submit.prevent>
         <div class="form-group">
-          <label for="name">Name</label>
-          <Field type="text" name="name" />
-          <ErrorMessage class="error" name="name" />
+          <label for="firstName">First name</label>
+          <Field type="text" name="firstName" />
+          <ErrorMessage class="error" name="firstName" />
+        </div>  
+        <div class="form-group">
+          <label for="lastName">Last name</label>
+          <Field type="text" name="lastName" />
+          <ErrorMessage class="error" name="lastName" />
         </div>  
         <div class="form-group">
           <label for="email">Email</label>
@@ -27,13 +31,16 @@ import { defineComponent } from 'vue'
 import { useForm, Field, ErrorMessage, Form as VeeForm } from 'vee-validate';
 import * as yup from 'yup';
 import { RegisterUser } from '@/types/api';
+import router from '@/router';
+import { useUserActions } from '@/store/user';
 
 export default defineComponent({
     components: {Field, ErrorMessage},
     setup() {
-
+        const { setUser } = useUserActions()
         const schema = yup.object({
-          name: yup.string().required(),  
+          firstName: yup.string().required(), 
+          lastName: yup.string().required(),   
           email: yup.string().required().email(),
           password: yup.string().required(),
         });
@@ -41,15 +48,28 @@ export default defineComponent({
         const { values, handleSubmit, resetForm } = useForm<RegisterUser>({
             validationSchema: schema,
             initialValues: {
-                name: '',
+                lastName: '',
+                firstName: '',
                 email: '',
                 password: '',
             }
         })
 
 
-        const register = () => {
-            //api.registerUser()
+        const register = async () => {
+            const registerUser: RegisterUser = {
+                firstName: values.firstName,
+                lastName: values.lastName,
+                email: values.email,
+                password: values.password,
+            } 
+            const user = await api.registerUser(registerUser)  
+            if(user != null){
+                setUser(user)
+                 router.push(`/`); 
+            }else {
+                alert("Error occoured while logging in. Please try again")
+            }    
         }
 
         return {
@@ -59,3 +79,19 @@ export default defineComponent({
     },
 })
 </script>
+<style scoped>
+.register {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-group {
+    @apply flex flex-col py-4;
+}
+
+button {
+    @apply w-full border-r-2 border-l-2 border-solid text-white hover:text-brand-500 hover:border-brand-500 mt-2;
+}
+</style>

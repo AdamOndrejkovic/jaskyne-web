@@ -1,7 +1,8 @@
 import { DifficultyEnum, RegionEnum } from "./models";
 
 export interface RegisterUser {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 }

@@ -1,29 +1,22 @@
-import { defineStore, storeToRefs } from "pinia"
+import { defineStore, storeToRefs } from "pinia";
+import { User } from "@/types/types";
 
-type UserState = {
 
-}
-
-type UserGetters = {
-
-}
-
-type UserActions = {
-
-}
-
-export const useUserStore = defineStore<string, UserState, UserGetters, UserActions>("userStore", {
-    state: () => {
-        return {
-
-        }
+const useUserStore = defineStore("user", {
+  state: () => ({
+    loggedUser: {} as User,
+  }),
+  getters: {
+    user: (state) => {
+      if (state.loggedUser != undefined) return state.loggedUser;
+      else return undefined;
     },
-    getters: {
-
+  },
+  actions: {
+    setUser(user: User) {
+      this.loggedUser = user
     },
-    actions: {
-
-    }
+  },
 })
 
 export const useUserState = () => storeToRefs(useUserStore())
