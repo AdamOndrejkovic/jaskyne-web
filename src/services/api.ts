@@ -1,6 +1,6 @@
 import axios from "axios";
-import { User } from "@/types/types";
-import { LoginUser, RegisterUser, Cave } from "@/types/api";
+import { Cave, User } from "@/types/types";
+import { LoginUser, RegisterUser } from "@/types/api";
 
 const client = axios.create({
   baseURL: "http://localhost:3000",

@@ -13,7 +13,6 @@ export interface LoginUser {
 }
 
 export interface Cave {
-  _id: string;
   title: string;
   description: string;
   region: RegionEnum;
@@ -21,4 +20,11 @@ export interface Cave {
   difficulty: DifficultyEnum;
   duration: string;
   image: string;
+}
+
+export interface Chat {
+  userId: string;
+  firstName: string;
+  text: string;
+  room: string;
 }
