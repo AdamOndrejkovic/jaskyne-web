@@ -1,5 +1,5 @@
 <template>
-    <div class="py-2 flex flex-col-reverse lg:flex-row relative flex-wrap overflow-hidden">
+    <div class="py-2 flex lg:flex-row relative flex-wrap overflow-hidden auth">
         <div class="overlay"></div>
         <div class="flex justify-center items-center mx-auto lg:w-1/2 w-full">
             <div class="auth-box">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="lg:mr-10 mt-1 mx-auto relative">
+        <div class="lg:mr-10 mt-1 mx-auto relative hidden lg:block">
         <img src="/images/jaskyna.jpg" alt="">
       </div>
     </div>
@@ -40,8 +40,14 @@ export default defineComponent({
 })
 </script>
 <style scoped>
+.auth {
+    @apply mt-4;
+    min-height: 75vh;
+}
+
 img {
   max-height: 75vh;
+
 }
 
 h2 {

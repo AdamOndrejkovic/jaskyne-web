@@ -28,6 +28,9 @@ const useChatStore = defineStore("chat", {
         this.chats.push(message);
       });
     },
+    getChat() {
+      chatService.getAll()
+    },
   },
 });
 

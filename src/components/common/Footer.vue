@@ -3,7 +3,7 @@
     <div class="flex gap-4 text-lg text-white">
       <router-link to="/">Home</router-link>
       <router-link to="/jaskyne">Jaskyne</router-link>
-      <router-link to="/blog">Blog</router-link>
+      <router-link to="/chat">Chat</router-link>
       <router-link to="/contact">Contact</router-link>
     </div>
     <div class="flex gap-4 py-4">

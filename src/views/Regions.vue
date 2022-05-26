@@ -22,12 +22,11 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { useCavesActions } from "@/store/caves";
-import { defineComponent } from "vue";
 import { useRoute, useRouter } from "vue-router";
-export default defineComponent({
-  setup() {
+
+
     const route = useRoute;
     const router = useRouter();
     const { setRegion, getAllCaves } = useCavesActions()
@@ -93,13 +92,6 @@ export default defineComponent({
       setRegion(region.split(' ')[0])
       router.push(`/jaskyne/${parameter}`);
     };
-
-    return {
-      regions,
-      redirect,
-    };
-  },
-});
 </script>
 
 <style scoped>

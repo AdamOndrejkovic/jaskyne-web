@@ -28,3 +28,9 @@ export interface Chat {
   text: string;
   room: string;
 }
+
+export interface Email {
+  sender: string;
+  subject: string;
+  message: string;
+}

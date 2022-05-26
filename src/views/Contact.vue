@@ -1,5 +1,5 @@
 <template>
-    <div class="py-2 flex">
+    <div class="py-2 flex contact-container">
       <div class="ml-4">
         <img src="/images/contact.jpg" alt="">
       </div>
@@ -66,6 +66,8 @@
 import { defineComponent } from "vue";
 import { useForm, ErrorMessage, Field, Form as VeeForm } from 'vee-validate';
 import * as yup from 'yup';
+import { useRoute, useRouter } from "vue-router";
+import api from "@/services/api";
 
 interface EmailForm {
   sender: string;
@@ -79,6 +81,8 @@ export default defineComponent({
     Field,
   },
   setup() {
+    const route = useRoute;
+    const router = useRouter();
 
     const { values, handleSubmit, resetForm } = useForm<EmailForm>({
       initialValues: {
@@ -94,12 +98,9 @@ export default defineComponent({
       message: yup.string().required(),
     });
 
-    const onSubmit = handleSubmit(values => {
-      if(values){
-        console.log(values)
-        resetForm
-      }
-      return
+    const onSubmit = handleSubmit(async values => {
+      await api.sendMail({sender: values.sender, subject: values.subject, message: values.message})
+      router.push(`/`);
     })
 
     return {
@@ -111,6 +112,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
 .contact {
   @apply bg-gray-300 w-full py-4 px-8 rounded-t-lg mb-2;
 }

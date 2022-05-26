@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Cave, User } from "@/types/types";
-import { LoginUser, RegisterUser } from "@/types/api";
+import { Email, LoginUser, RegisterUser } from "@/types/api";
 
 const client = axios.create({
   baseURL: "http://localhost:3000",
@@ -42,8 +42,11 @@ export default {
   },
   deleteCave: async (id: string): Promise<any> => {
     return await client.delete(`/caves/${id}`)
-  }
+  },
   // Blog api calls
 
   // Contact api calls
+  sendMail: async (email: Email): Promise<any> => {
+    return await client.post("/mailer", email)
+  }
 };
